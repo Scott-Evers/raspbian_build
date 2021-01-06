@@ -1,11 +1,19 @@
 ---
 
 - name: Base Raspbian Buster Config
-  connection: ansible.netcommon.network_cli
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  become_user: root
+  become_method: su
+
   gather_facts: false
-  hosts: all
   tasks:
 
     - name: Create user severs
-      debug:
-        msg: "The hostname is {{ ansible_net_hostname }} and the OS is {{ ansible_net_version }}"
+      user:
+        name: severs
+        shell: /bin/bash
+        groups: admins
+        append: yes
+        create_home: True

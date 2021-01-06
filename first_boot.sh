@@ -24,8 +24,8 @@ fi
 
 
 #update the OS with the latest BRANCHs and upgrade packages
-apt update
-apt upgrade -y
+# apt update        # temporarilty commented for development
+# apt upgrade -y        # temporarilty commented for development
 
 #install ansible and git
 apt install ansible git -y
