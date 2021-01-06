@@ -25,10 +25,10 @@
         owner: severs
         group: sudo
         mode: 0644
-                
+
     - name: Authorized keys file
       copy:
-        src: /srv/myfiles/foo.conf
+        src: raspbian_build/severs.pub.rsa
         dest: /home/severs/.ssh/authorized_keys
         owner: severs
         group: sudo
