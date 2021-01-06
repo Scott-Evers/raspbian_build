@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# run this script as 'sudo /bin/bash first_boot.sh --repo=github_repo_name'
+# run this script as 'sudo /bin/bash first_boot.sh --branch=branch_name'
 
 
 # parse arguments
@@ -8,7 +8,7 @@ for i in "$@"
 do
     case $i in
         -u=*|--url=*)
-        REPO="${i#*=}"
+        BRANCH="${i#*=}"
         shift # past argument=value
         ;;
         *)
@@ -16,14 +16,14 @@ do
         ;;
     esac
 done
-if [[ -z "$REPO" ]]; then
-    echo "ERROR: Repo not specified"
+if [[ -z "$BRANCH" ]]; then
+    echo "ERROR: branch not specified"
     exit -1
 fi
-echo "Github repo name  = ${REPO}"
+echo "Github branch name  = ${BRANCH}"
 
 
-#update the OS with the latest repos and upgrade packages
+#update the OS with the latest BRANCHs and upgrade packages
 apt update
 apt upgrade -y
 
