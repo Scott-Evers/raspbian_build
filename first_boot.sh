@@ -32,7 +32,7 @@ apt install ansible git -y
 
 # download ansible playbook
 echo "Cloning git branch $BRANCH"
-git clone --branch $BRANCH git@github.com:Scott-Evers/raspian_build.git
+git clone --branch $BRANCH git://github.com/Scott-Evers/raspian_build.git
 
 # run playbook
 echo "Running Ansible playbook with version $(ansible --version)"
