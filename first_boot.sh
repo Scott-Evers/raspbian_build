@@ -7,7 +7,7 @@
 for i in "$@"
 do
     case $i in
-        -u=*|--url=*)
+        -b=*|--branch=*)
         BRANCH="${i#*=}"
         shift # past argument=value
         ;;
@@ -20,7 +20,7 @@ if [[ -z "$BRANCH" ]]; then
     echo "ERROR: branch not specified"
     exit -1
 fi
-echo "Github branch name  = ${BRANCH}"
+
 
 
 #update the OS with the latest BRANCHs and upgrade packages
@@ -31,7 +31,8 @@ apt upgrade -y
 apt install ansible git -y
 
 # download ansible playbook
-git clone 
+echo "Cloning git branch $BRANCH"
+git clone --branch $BRANCH git@github.com:Scott-Evers/raspian_build.git
 
 # run playbook
 echo "Running Ansible playbook with version $(ansible --version)"
