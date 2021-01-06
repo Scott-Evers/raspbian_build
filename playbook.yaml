@@ -17,3 +17,19 @@
         groups: sudo
         append: yes
         create_home: True
+
+    - name: Create .ssh directory
+      file:
+        path: /home/severs/.ssh
+        state: directory
+        owner: severs
+        group: sudo
+        mode: 0644
+                
+    - name: Authorized keys file
+      copy:
+        src: /srv/myfiles/foo.conf
+        dest: /home/severs/.ssh/authorized_keys
+        owner: severs
+        group: sudo
+        mode: 0644
