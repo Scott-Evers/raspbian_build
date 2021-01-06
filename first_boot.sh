@@ -36,3 +36,4 @@ git clone --branch $BRANCH git://github.com/Scott-Evers/raspian_build.git
 
 # run playbook
 echo "Running Ansible playbook with version $(ansible --version)"
+ansible-playbook raspian_build/playbook.yaml

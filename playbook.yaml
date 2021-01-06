@@ -14,6 +14,6 @@
       user:
         name: severs
         shell: /bin/bash
-        groups: admins
+        groups: sudo
         append: yes
         create_home: True
