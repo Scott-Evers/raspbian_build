@@ -18,21 +18,13 @@
         append: yes
         create_home: True
 
-    - name: Create .ssh directory
-      file:
-        path: /home/severs/.ssh
-        state: directory
+    - name: Authorized keys file
+      copy:
+        src: resources/default_profile/
+        dest: /home/severs/
         owner: severs
         group: severs
         mode: 0700
-
-    - name: Authorized keys file
-      copy:
-        src: severs.pub.rsa
-        dest: /home/severs/.ssh/authorized_keys
-        owner: severs
-        group: sudo
-        mode: 0600
 
     - name: remove password requirement for sudo group
       lineinfile:
