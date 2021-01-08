@@ -41,8 +41,8 @@ apt install ansible git -y
 
 # download ansible playbook
 echo "Cloning git branch $BRANCH"
-git clone --branch $BRANCH git://github.com/Scott-Evers/raspian_build.git
+git clone --branch $BRANCH git://github.com/Scott-Evers/raspbian_build.git
 
 # run playbook
 echo "Running Ansible playbook with version $(ansible --version)"
-ansible-playbook raspian_build/$ROLE/default.yaml
+ansible-playbook raspbian_build/$ROLE/default.yaml
