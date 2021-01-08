@@ -20,7 +20,7 @@
 
     - name: Authorized keys file
       copy:
-        src: resources/default_profile/
+        src: ../common/resources/default_profile/
         dest: /home/severs/
         owner: severs
         group: severs
