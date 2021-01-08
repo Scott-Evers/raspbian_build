@@ -11,15 +11,24 @@ do
         BRANCH="${i#*=}"
         shift # past argument=value
         ;;
+        -r=*|--role=*)
+        ROLE="${i#*=}"
+        shift # past argument=value
+        ;;
         *)
             echo "Invalid argument specified: ${i}"  # unknown option
         ;;
     esac
 done
-if [[ -z "$BRANCH" ]]; then
-    echo "ERROR: branch not specified"
+if [[ -z "$ROLE" ]]; then
+    echo "ERROR: ROLE not specified"
     exit -1
 fi
+if [[ -z "$BRANCH" ]]; then
+    BRANCH=basic
+    echo "INFO: No branch specified.  Defaulting to 'basic'"
+fi
+
 
 
 
@@ -36,4 +45,4 @@ git clone --branch $BRANCH git://github.com/Scott-Evers/raspian_build.git
 
 # run playbook
 echo "Running Ansible playbook with version $(ansible --version)"
-ansible-playbook raspian_build/playbook.yaml
+ansible-playbook raspian_build/$ROLE/default.yaml

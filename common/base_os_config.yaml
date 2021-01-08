@@ -33,3 +33,10 @@
         owner: severs
         group: sudo
         mode: 0600
+
+    - name: remove password requirement for sudo group
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%sudo\s'
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
