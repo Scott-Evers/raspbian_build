@@ -18,7 +18,7 @@
     - name: Create user severs
       user:
         name: severs
-        shell: /bin/zsh
+        shell: /usr/bin/zsh
         groups: sudo
         append: yes
         create_home: True
