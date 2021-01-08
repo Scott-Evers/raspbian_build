@@ -10,15 +10,20 @@
   gather_facts: false
   tasks:
 
+    - name: Install required packages
+      apt:
+        pkg:
+          - zsh
+
     - name: Create user severs
       user:
         name: severs
-        shell: /bin/bash
+        shell: /bin/zsh
         groups: sudo
         append: yes
         create_home: True
 
-    - name: Authorized keys file
+    - name: Setup user profile
       copy:
         src: ../common/resources/default_profile/
         dest: /home/severs/
