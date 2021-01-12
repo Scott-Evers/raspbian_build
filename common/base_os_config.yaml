@@ -8,6 +8,9 @@
   become_method: su
 
   gather_facts: false
+
+  vars:
+    user: severs
   tasks:
 
     - name: Generate US locale
@@ -20,9 +23,9 @@
         pkg:
           - zsh
 
-    - name: Create user severs
+    - name: Create user
       user:
-        name: severs
+        name: "{{ user }}"
         shell: /usr/bin/zsh
         groups: sudo
         append: yes
@@ -31,7 +34,7 @@
     - name: Setup user profile
       copy:
         src: ../common/resources/default_profile/
-        dest: /home/severs/
+        dest: /home/{{ user }}/
         owner: severs
         group: severs
         mode: 0700
@@ -42,3 +45,14 @@
         state: present
         regexp: '^%sudo\s'
         line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+
+    - name: Disable password login
+      lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
+      notify:
+        - restart sshd
+
+  handlers:
+    - name: restart sshd
+      service:
+        name: sshd
+        state: reatarted
