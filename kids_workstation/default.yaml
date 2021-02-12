@@ -1,1 +1,3 @@
+- name: include vars
+  include_vars: vars/input.yaml
 - import_playbook: ../common/base_os_config.yaml
