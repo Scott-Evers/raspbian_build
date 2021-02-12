@@ -1,3 +1,13 @@
-- name: include vars
-  include_vars: vars/input.yaml
-- import_playbook: ../common/base_os_config.yaml
+---
+
+- name: Base Raspbian Buster Config
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  become_user: root
+  become_method: su
+
+  tasks:
+    - name: include vars
+      include_vars: vars/input.yaml
+    - import_playbook: ../common/base_os_config.yaml
