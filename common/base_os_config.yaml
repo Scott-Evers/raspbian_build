@@ -25,19 +25,21 @@
 
     - name: Create user
       user:
-        name: "{{ user }}"
+        name: "{{ item.name }}"
         shell: /usr/bin/zsh
-        groups: sudo
+        groups: "{{ item.groups }}"
         append: yes
         create_home: True
+      with_items: "{{ users }}"
 
     - name: Setup user profile
       copy:
         src: ../common/resources/default_profile/
         dest: /home/{{ user }}/
-        owner: severs
-        group: severs
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
         mode: 0700
+      with_items: "{{ users }}"
 
     - name: remove password requirement for sudo group
       lineinfile:

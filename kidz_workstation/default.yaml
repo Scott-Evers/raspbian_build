@@ -1,0 +1,1 @@
+- import_playbook: ../common/base_os_config.yaml
