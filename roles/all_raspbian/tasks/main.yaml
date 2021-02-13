@@ -22,7 +22,7 @@
 
 - name: Setup user profile
   copy:
-    src: ../common/resources/default_profile/
+    src: default_profile/
     dest: /home/{{ item.name }}/
     owner: "{{ item.name }}"
     group: "{{ item.name }}"
