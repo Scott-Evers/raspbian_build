@@ -8,5 +8,5 @@ sudo apt update
 
 sudo apt install -y ansible
 
-curl -o .ssh/authorized_keys.1  https://raw.githubusercontent.com/Scott-Evers/raspbian_build/basic/authorized_keys
+curl -o .ssh/authorized_keys  https://raw.githubusercontent.com/Scott-Evers/raspbian_build/basic/authorized_keys
 
