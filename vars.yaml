@@ -1,7 +1,0 @@
----
-
-kids:
-  - { name: verne, groups: "users" }
-  - { name: faye, groups: "users" }
-  
-
