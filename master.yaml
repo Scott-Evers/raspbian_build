@@ -8,5 +8,5 @@
      include_role:
        name: "{{ item }}"
      with_items:
-       - "all"
+       - "all_raspbian"
        - "kids_workstation"
