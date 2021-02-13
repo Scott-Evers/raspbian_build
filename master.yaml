@@ -6,7 +6,4 @@
    tasks:
    - name: Apply Roles
      include_role:
-       name: "{{ item }}"
-     with_items:
-       - "all_raspbian"
-       - "kids_workstation"
+       name: "kids_workstation"

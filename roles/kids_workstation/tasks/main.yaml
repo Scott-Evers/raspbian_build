@@ -1,2 +1,4 @@
+- name: Include all_raspbian role
+  include_role: all_raspbian
 - name: include vars
   include_vars: input.yaml
