@@ -5,16 +5,16 @@
   user:
     name: "{{ item.name }}"
     shell: /usr/bin/zsh
-    groups: {{ item.groups }}
+    groups: "{{ item.groups }}"
     append: yes
     create_home: True
-  with_items: {{ kids }}
+  with_items: "{{ kids }}"
 
 - name: Setup user profile
   copy:
     src: default_profile/
-    dest: /home/{{ item.name }}/
-    owner: {{ item.name }}
-    group: {{ item.name }}
+    dest: "/home/{{ item.name }}/"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
     mode: 0700
-  with_items: {{ kids }}
+  with_items: "{{ kids }}"
