@@ -8,5 +8,5 @@
      include_role:
        name: "{{ item }}"
      with_items:
-       - "common"
+       - "all"
        - "kids_workstation"
