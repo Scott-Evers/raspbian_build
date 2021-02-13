@@ -4,6 +4,9 @@
    remote_user: root
    become: yes
    tasks:
-   - name: Apply Roles
-     include_role:
-       name: "kids_workstation"
+    - name: Apply all_raspbian role
+      include_role: 
+        name: all_raspbian
+    - name: Apply kids_workstation role
+      include_role:
+        name: "kids_workstation"
