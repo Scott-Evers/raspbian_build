@@ -6,6 +6,8 @@
     name: "{{ item.name }}"
     shell: /usr/bin/zsh
     groups: "{{ item.groups }}"
+    password: "raspberry"
+    update_password: on_create
     append: yes
     create_home: True
   with_items: "{{ kids }}"
