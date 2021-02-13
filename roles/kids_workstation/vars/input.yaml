@@ -1,7 +1,0 @@
----
-
-users:
-  - { name: verne, groups: "verne" }
-  - { name: faye, groups: "faye" }
-  
-
