@@ -22,7 +22,7 @@ do
 done
 if [[ -z "$ROLE" ]]; then
     echo "ERROR: ROLE not specified"
-    exit -1
+#    exit -1
 fi
 if [[ -z "$BRANCH" ]]; then
     BRANCH=basic
@@ -45,4 +45,4 @@ git clone --branch $BRANCH git://github.com/Scott-Evers/raspbian_build.git
 
 # run playbook
 echo "Running Ansible playbook with version $(ansible --version)"
-ansible-playbook raspbian_build/$ROLE/default.yaml
+ansible-playbook raspbian_build/master.yaml
