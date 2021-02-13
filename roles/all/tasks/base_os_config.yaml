@@ -1,3 +1,6 @@
+- name: include vars
+  include_vars: input.yaml
+
 - name: Generate US locale
   locale_gen:
     name: "en_US.UTF-8"

@@ -1,2 +1,2 @@
 - name: include vars
-  include_vars: vars/input.yaml
+  include_vars: input.yaml
