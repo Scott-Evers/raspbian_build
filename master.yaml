@@ -3,7 +3,5 @@
    connection: local
    remote_user: root
    become: yes
-   tasks:
-   - name: Apply Roles
-     include_role:
-       name: "kids_workstation"
+   roles:
+    - kids_workstation
