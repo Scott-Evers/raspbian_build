@@ -12,7 +12,7 @@
 
 - name: Setup user profile
   copy:
-    src: default_profile/
+    src: ../../all_raspbian/files/default_profile/
     dest: "/home/{{ item.name }}/"
     owner: "{{ item.name }}"
     group: "{{ item.name }}"
