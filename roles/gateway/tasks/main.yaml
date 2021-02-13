@@ -1,0 +1,19 @@
+- name: Install OpenVPN Server
+  apt:
+    pkg:
+    - openssl 
+    - easy-rsa
+    - openvpn
+    state: present
+
+- name: Copy Easy RSA files
+  copy:
+    src: /usr/share/easy-rsa/
+    remote_src: yes
+    dest: /etc/openvpn/easy-rsa
+
+- name: Set working directory for easyrsa
+  copy:
+    dest: /etc/openvpn/easy-rsa/vars
+    content: |
+      set_var EASY_RSA "/etc/openvpn/easy-rsa"
