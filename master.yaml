@@ -4,5 +4,4 @@
    remote_user: root
    become: yes
    roles:
-    - all_raspbian
     - kids_workstation
