@@ -1,60 +1,45 @@
----
+- name: Generate US locale
+  locale_gen:
+    name: "en_US.UTF-8"
+    state: present
 
-- name: Base Raspbian Buster Config
-  hosts: 127.0.0.1
-  connection: local
-  become: yes
-  become_user: root
-  become_method: su
+- name: Install required packages
+  apt:
+    pkg:
+      - zsh
 
-  gather_facts: false
+- name: Create user
+  user:
+    name: "{{ item.name }}"
+    shell: /usr/bin/zsh
+    groups: "{{ item.groups }}"
+    append: yes
+    create_home: True
+  with_items: "{{ users }}"
 
-  vars:
-    user: severs
-  tasks:
+- name: Setup user profile
+  copy:
+    src: ../common/resources/default_profile/
+    dest: /home/{{ user }}/
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: 0700
+  with_items: "{{ users }}"
 
-    - name: Generate US locale
-      locale_gen:
-        name: "en_US.UTF-8"
-        state: present
+- name: remove password requirement for sudo group
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%sudo\s'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
 
-    - name: Install required packages
-      apt:
-        pkg:
-          - zsh
+- name: Disable password login
+  lineinfile: 
+    path: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+  notify:
+    - restart sshd
 
-    - name: Create user
-      user:
-        name: "{{ item.name }}"
-        shell: /usr/bin/zsh
-        groups: "{{ item.groups }}"
-        append: yes
-        create_home: True
-      with_items: "{{ users }}"
 
-    - name: Setup user profile
-      copy:
-        src: ../common/resources/default_profile/
-        dest: /home/{{ user }}/
-        owner: "{{ item.name }}"
-        group: "{{ item.name }}"
-        mode: 0700
-      with_items: "{{ users }}"
-
-    - name: remove password requirement for sudo group
-      lineinfile:
-        path: /etc/sudoers
-        state: present
-        regexp: '^%sudo\s'
-        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
-
-    - name: Disable password login
-      lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
-      notify:
-        - restart sshd
-
-  handlers:
-    - name: restart sshd
-      service:
-        name: sshd
-        state: restarted
